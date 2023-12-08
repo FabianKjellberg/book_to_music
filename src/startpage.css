@@ -40,11 +40,9 @@ p {
   padding: 10px;
 }
 
-
 .column {
   flex-direction: column;
 }
-
 
 .three-information-container {
   display: grid;
