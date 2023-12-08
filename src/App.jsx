@@ -1,20 +1,16 @@
-import  StartPage from './startpage'
-import  MixBook from './mixbook'
-
-import './index.css'
-import bannerImage from './img/banner.png'
+import { Route, Routes } from 'react-router-dom';
+import StartPage from './startpage';
+import MixBook from './mixbook';
 
 function App() {
-  return (
-    <>
-      <img className="banner" src={bannerImage} alt="Banner" />
-      <StartPage></StartPage>
-      {/*<MixBook></MixBook> */}
-      <div class="footer">
-          <p>★ BookMixtape</p>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <Routes className="App">
+                <Route path="/" element={<StartPage />} />
+                <Route path="mixbook" element={<MixBook />} />
+            </Routes>
+        </>
+    );
 }
 
-export default App
+export default App;
