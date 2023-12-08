@@ -40,12 +40,6 @@ p {
   padding: 10px;
 }
 
-.readingnookbanner {
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
-}
-
 .flex-container {
   display: flex;
   align-items: center;

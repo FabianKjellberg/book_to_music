@@ -1,0 +1,11 @@
+.banner {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+  }
+
+.footer{
+    text-align: center;
+    background-color: #ffffff;
+    padding: 1px;
+}
