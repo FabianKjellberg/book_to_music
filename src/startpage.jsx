@@ -1,13 +1,10 @@
 import "./startpage.css";
 import React, { useState } from "react";
-import bannerImage from './img/banner.png'
 
 function StartPage() {
   const fixedGradient = "linear-gradient(90deg, rgba(66,109,170,1) 10%, rgba(175,185,201,1) 68%)";
   return (
     <>
-      <img className="readingnookbanner" src={bannerImage} alt="Banner" />
-
       <div className="information-grid">
         <div className="information-item">
           <p className="about-platform">

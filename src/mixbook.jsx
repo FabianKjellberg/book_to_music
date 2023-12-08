@@ -1,9 +1,10 @@
-function mixbook() {
+
+function MixBook() {
   return (
     <div>
-      <h1>Hello</h1>
+      <h1>Type</h1>
     </div>
   );
 }
 
-export default mixbook;
+export default MixBook;
