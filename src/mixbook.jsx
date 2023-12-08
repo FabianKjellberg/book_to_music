@@ -3,10 +3,29 @@ import './mixbook.css';
 
 function MixBook() {
   const fixedGradient = "linear-gradient(90deg, rgba(66,109,170,1) 10%, rgba(175,185,201,1) 68%)";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
+  };
   return (
     <div>
       <h1>Type</h1>
+      <div className='flex-container'>
+        <form onSubmit={handleSubmit}>
+              <input type="radio" name="type" value="page" id="page" />
+              <label htmlFor="page">Page</label>
 
+              <input type="radio" name="type" value="chapter" id="chapter" />
+              <label htmlFor="chapter">Chapter</label>
+
+              <input type="radio" name="type" value="book" id="book" />
+              <label htmlFor="book">Book</label>
+
+              <button type="submit">Submit</button>
+        </form>
+      </div>
+      
       <div className="flex-container">
         <img
           className="star-divider"
