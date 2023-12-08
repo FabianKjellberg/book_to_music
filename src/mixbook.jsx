@@ -29,10 +29,10 @@ function MixBook() {
 
       <div className="flex-container">
         <button
-          className="star-button row" 
+          className="start-button row"
           style={{ background: fixedGradient }}
         >
-          <p>Confirm</p>
+          <p>Get Started</p>
           <img
             src="https://cdn.discordapp.com/attachments/1078963035630223391/1136323255955898388/616818.png"
             alt="Icon"
