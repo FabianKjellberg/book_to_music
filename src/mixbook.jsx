@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-import './mixbook.css'
+import React from 'react';
+import './mixbook.css';
 
 function MixBook() {
   const fixedGradient = "linear-gradient(90deg, rgba(66,109,170,1) 10%, rgba(175,185,201,1) 68%)";
@@ -29,7 +29,7 @@ function MixBook() {
 
       <div className="flex-container">
         <button
-          className="start-button row"
+          className="star-button row" 
           style={{ background: fixedGradient }}
         >
           <p>Confirm</p>
@@ -39,14 +39,8 @@ function MixBook() {
           />
         </button>
       </div>
-=======
-function mixbook() {
-  return (
-    <div>
-      <h1>Hello</h1>
->>>>>>> df5b8b6767fc12bbce9efce037fa13867417f06d
     </div>
   );
 }
 
-export default mixbook;
+export default MixBook;
