@@ -1,5 +1,6 @@
 import "./startpage.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import bannerImage from './img/banner.png'
 
 function StartPage() {
@@ -41,6 +42,7 @@ function StartPage() {
       </div>
 
       <div className="flex-container">
+        <Link to="/mixbook" className="button-link">
         <button
           className="start-button row"
           style={{ background: fixedGradient }}
@@ -51,6 +53,7 @@ function StartPage() {
             alt="Icon"
           />
         </button>
+        </Link>
       </div>
 
       <div className="three-information-container">
