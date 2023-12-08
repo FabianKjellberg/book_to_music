@@ -75,6 +75,10 @@ p {
   padding: 0px 10px;
 }
 
+.button-link {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1400px) {
   .information-grid {
     margin: 40px 200px;
