@@ -1,10 +1,12 @@
 import "./startpage.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function StartPage() {
   const fixedGradient = "linear-gradient(90deg, rgba(66,109,170,1) 10%, rgba(175,185,201,1) 68%)";
   return (
     <>
+
       <div className="information-grid">
         <div className="information-item">
           <p className="about-platform">
@@ -38,6 +40,7 @@ function StartPage() {
       </div>
 
       <div className="flex-container">
+        <Link to="/mixbook" className="button-link">
         <button
           className="start-button row"
           style={{ background: fixedGradient }}
@@ -48,6 +51,7 @@ function StartPage() {
             alt="Icon"
           />
         </button>
+        </Link>
       </div>
 
       <div className="three-information-container">
