@@ -11,13 +11,13 @@
 }
 
 .flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
   
 .star-divider {
-    margin-top: -50px;
+    margin-top: -10px;
     width: 70%;
   }
 
@@ -55,4 +55,4 @@
 
 .row {
     flex-direction: row;
-  }
+}

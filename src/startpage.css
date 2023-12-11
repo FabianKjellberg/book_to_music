@@ -40,11 +40,9 @@ p {
   padding: 10px;
 }
 
-
 .column {
   flex-direction: column;
 }
-
 
 .three-information-container {
   display: grid;
@@ -75,6 +73,10 @@ p {
 
 .three-information-boxes h3 {
   padding: 0px 10px;
+}
+
+.button-link {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1400px) {
