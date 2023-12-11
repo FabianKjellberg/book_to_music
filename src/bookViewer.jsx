@@ -1,18 +1,21 @@
 import './bookViewer.css'
 import React, { useEffect, useState, useRef } from "react";
 import ePub from 'epubjs';
+import OpenAiUtility from './openAiUtility.jsx'
 
 export default function BookViewer(props) {
 
     const viewerRef = useRef(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [renditioner, setRenditioner] = useState(null);
+
 
 
     useEffect(() => {
-        if(props.book) {
-            const rendition = props.book.renderTo(viewerRef.current, {width: 600, height: 800});
-
+        if (props.book) {
+            let rendition = props.book.renderTo(viewerRef.current, { width: 600, height: 800 });
             rendition.display();
+            setRenditioner(rendition)
 
             return () => {
                 if (props.book) {
@@ -24,19 +27,40 @@ export default function BookViewer(props) {
 
 
     const goToPreviousPage = () => {
-        const rendition = props.book.rendition;
-        rendition.prev();
+        renditioner.prev();
     };
+
+    function countWords(text){
+        return text.split(" ").length
+    }
 
     const goToNextPage = () => {
-        const rendition = props.book.rendition;
-        rendition.next();
+        console.log(renditioner.getContents());
+
+        const oldURI = renditioner.getContents()[0].content.baseURI;
+        renditioner.next().then(() =>{
+
+            const newContent = renditioner.getContents()[0]
+            const newURI = newContent.content.baseURI;
+            const chapterText = newContent.content.innerText;
+
+            if(oldURI !== newURI){
+                console.log(newURI);
+                console.log(chapterText)
+                let wordCnt = countWords(chapterText)
+                if(wordCnt > 150){
+                    const filteredText = chapterText.replace(/[.,]/g, '');
+                    console.log(wordCnt);
+                    console.log(OpenAiUtility.getSentiment(filteredText))
+                }
+            }
+        });
+
+    //const getTextFromRenditioner = renditioner.getContents()[0].content.innerText;
+
     };
 
-    const getTextForCurrentPage = async () => {
-        const rendition = props.book.rendeition;
-        console.log(rendition.getContents())
-    };
+
 
     return (
         <>

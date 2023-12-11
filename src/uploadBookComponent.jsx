@@ -7,12 +7,25 @@ export default function UploadBookComponent(props) {
     const [bookString, setBookString] = useState("No book selected");
     const [coverUrl, setCoverUrl] = useState(null);
     const fileInputRef = useRef(null);
+    const viewerRef = useRef(null);
+   
+
 
     useEffect(() => {
-        if (props.book != null) {
+
+
+        if (props.book) {
+            
             props.book.loaded.metadata.then((metadata) => {
                 setBookString(metadata.title + ", " + metadata.creator);
             });
+            const rendition = props.book.renderTo(viewerRef.current, { width: 200, height: 400 });
+            rendition.display();
+            return () => {
+                if (props.book) {
+                    rendition.destroy();
+                }
+            };
         }
     }, [props.book]);
 
@@ -53,6 +66,7 @@ export default function UploadBookComponent(props) {
         event.preventDefault();
     };
 
+
     return (
         <>
             <div
@@ -74,8 +88,8 @@ export default function UploadBookComponent(props) {
                     />
                 </div>
                 <div className="dragAndDrop">Drag and drop file here</div>
-                {coverUrl && (
-                    <img src={coverUrl} alt="Book Cover" style={{ maxWidth: '100%' }} />
+                {props.book && (
+                    <div ref={viewerRef}></div>
                 )}
             </div>
         </>

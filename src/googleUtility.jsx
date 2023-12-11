@@ -2,7 +2,7 @@ class GoogleUtility {
 
     static async getSentiment(text) {
         const apiKey = 'AIzaSyCJKnk4DTZU_qdOu6tNbn-CLCslw7JFc3c';
-        const url = `https://language.googleapis.com/v2/documents:analyzeSentiment?key=${apiKey}`;
+        const url = `https://language.googleapis.com/v2/documents:/v2/documents:analyzeSentiment?key=${apiKey}`;
 
 
         try {
@@ -25,7 +25,7 @@ class GoogleUtility {
             return data;
         } catch (error) {
             console.error('Error in API request:', error);
-            throw error; // Rethrow the error to be caught by the caller if needed
+            throw error;
         }
     }
 }
