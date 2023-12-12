@@ -2,6 +2,7 @@ import './bookViewer.css'
 import React, { useEffect, useState, useRef } from "react";
 import ePub from 'epubjs';
 import OpenAiUtility from './openAiUtility.jsx'
+import UtilityFunctions from './utilityFunctions.jsx'
 
 export default function BookViewer(props) {
 
@@ -9,11 +10,19 @@ export default function BookViewer(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const [renditioner, setRenditioner] = useState(null);
 
+    const wordsPerChunk = 3000; //hur många ord som kan användas i openAI per chunk
 
-
+    //Denna metod körs varje gång props.book ändras
     useEffect(() => {
+        //om en bok finns, så renderas boken
         if (props.book) {
-            let rendition = props.book.renderTo(viewerRef.current, { width: 600, height: 800 });
+            let rendition = props.book.renderTo(viewerRef.current,
+                {
+                    //Ändra på detta om ni vill ändra på sotrleken på readern
+                    width: 600,
+                    height: 800
+                }
+            );
             rendition.display();
             setRenditioner(rendition)
 
@@ -26,40 +35,59 @@ export default function BookViewer(props) {
     }, [props.book]); //
 
 
+    //gå tillbaka en sida
     const goToPreviousPage = () => {
-        renditioner.prev();
+        console.log(renditioner.getContents());
+        const oldURI = renditioner.getContents()[0].content.baseURI;
+        renditioner.prev().then(() => {
+            checkForNewChapter(oldURI, renditioner.getContents()[0]);
+        });
     };
 
-    function countWords(text){
-        return text.split(" ").length
-    }
-
+    //gå fram en sida
     const goToNextPage = () => {
         console.log(renditioner.getContents());
-
         const oldURI = renditioner.getContents()[0].content.baseURI;
         renditioner.next().then(() =>{
-
-            const newContent = renditioner.getContents()[0]
-            const newURI = newContent.content.baseURI;
-            const chapterText = newContent.content.innerText;
-
-            if(oldURI !== newURI){
-                console.log(newURI);
-                console.log(chapterText)
-                let wordCnt = countWords(chapterText)
-                if(wordCnt > 150){
-                    const filteredText = chapterText.replace(/[.,]/g, '');
-                    console.log(wordCnt);
-                    console.log(OpenAiUtility.getSentiment(filteredText))
-                }
-            }
+            checkForNewChapter(oldURI, renditioner.getContents()[0]);
         });
-
-    //const getTextFromRenditioner = renditioner.getContents()[0].content.innerText;
-
     };
+    
+    const checkForNewChapter = async (oldURI, newContent) => {
+        const newURI = newContent.content.baseURI;
 
+        if(oldURI !== newURI){
+            
+            const chapterText = newContent.content.innerText;
+            let wordCnt = UtilityFunctions.wordCount(chapterText)
+
+            if(wordCnt > 150){
+                const filteredText = chapterText.replace(/[.,]/g, '');
+                
+                const splitText = UtilityFunctions.splitStringByWords(filteredText, wordsPerChunk);
+                
+                console.log(splitText);
+                
+                const searchTermArray = await getApiStrings(splitText);
+                props.sendSearchTermsToSpotifyApi(searchTermArray);
+            }
+        }
+    }
+
+    const getApiStrings = async (textArray) => {
+        const returnStrings = [];
+
+        for (const text of textArray) {
+            try {
+                const response = await OpenAiUtility.getSentiment(text);
+                returnStrings.push(response);
+            } catch (error) {
+                console.error('something went wrong with getting the search terms');
+            }
+        }
+
+        return returnStrings;
+    };
 
 
     return (

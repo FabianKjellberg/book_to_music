@@ -3,17 +3,11 @@ import React, { useEffect, useState, useRef } from "react";
 import ePub from 'epubjs';
 
 export default function UploadBookComponent(props) {
-    //const [book, setBook] = useState(null);
     const [bookString, setBookString] = useState("No book selected");
-    const [coverUrl, setCoverUrl] = useState(null);
     const fileInputRef = useRef(null);
     const viewerRef = useRef(null);
    
-
-
     useEffect(() => {
-
-
         if (props.book) {
             
             props.book.loaded.metadata.then((metadata) => {
