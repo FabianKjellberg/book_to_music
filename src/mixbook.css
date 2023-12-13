@@ -32,3 +32,14 @@ h1 {
 .button input:checked + label {
   border-color: rgb(0, 0, 0);
 }
+
+.book_button {
+  align-self: center;
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #000000;
+  border-radius: 16px;
+  border-width: 1px;
+  padding: 7px;
+  margin: 5px;
+}

@@ -1,10 +1,8 @@
 import React from "react";
 import "./mixbook.css";
+import EpubViewer from "./EpubViewer";
 
 function MixBook() {
-  const fixedGradient =
-    "linear-gradient(90deg, rgba(66,109,170,1) 10%, rgba(175,185,201,1) 68%)";
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -59,18 +57,8 @@ function MixBook() {
       </div>
 
       <h1>File</h1>
-
-      <div className="flex-container">
-        <button
-          className="start-button row"
-          style={{ background: fixedGradient }}
-        >
-          <p>Get Started</p>
-          <img
-            src="https://cdn.discordapp.com/attachments/1078963035630223391/1136323255955898388/616818.png"
-            alt="Icon"
-          />
-        </button>
+      <div>
+        <EpubViewer></EpubViewer>
       </div>
     </div>
   );
