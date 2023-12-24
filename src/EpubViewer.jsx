@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UploadBookComponent from "./uploadBookComponent.jsx";
 import BookViewer from "./bookViewer.jsx";
+import { searchTracks } from "./SpotifyAPI.js";
 
 const EpubViewer = () => {
   //en const book behövs för både UploadBookComponent och BookViewer
@@ -11,6 +12,21 @@ const EpubViewer = () => {
     //searchTerms är en array av söktermer, den hämtar 4 ord per 3000 ord som finns i kapitlet
     console.log("Test av callback funktion");
     console.log(searchTerms);
+
+    //här kan ni skicka in searchTerms till spotifyApi ##########################################################
+      // hämtar Spotify access token från urlen
+    const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
+
+      const genres = ["lofi", "classical", "pop"];
+
+
+      try {
+          const tracks = searchTracks(accessToken, genres); // Hämtar låtar med genrer ( kolla SpotifyAPI.js för mer info )
+          console.log(tracks); // You can now use the 'tracks' variable
+      } catch (error) {
+          console.error('Error in the main code: ', error);
+          // Handle the error as needed
+      }
   }
 
   return (
