@@ -90,7 +90,7 @@ const SpotifyAddPlaylist = () => {
                             onChange={handlePlaylistPublicChange}
                         />
                     </div>
-                    <Link to={`/`} className="button-link">
+                    <Link to={`/mixbook#access_token=${accessToken}`} className="button-link">
                         <button onClick={handleCreatePlaylist}>Create Playlist</button>
                     </Link>
                 </>
