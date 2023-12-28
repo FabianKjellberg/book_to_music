@@ -66,7 +66,13 @@ export default function BookViewer(props) {
         console.log(splitText);
 
         const searchTermArray = await getApiStrings(splitText);
-        props.sendSearchTermsToSpotifyApi(searchTermArray);
+
+        const termToSend = {
+          wordCount: wordCnt,
+          searchTermArray: searchTermArray
+        };
+
+        props.sendSearchTermsToSpotifyApi(termToSend);
       }
     }
   };
