@@ -4,6 +4,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const SpotifyAddPlaylist = () => {
     const [accessToken, setAccessToken] = useState('');
@@ -89,7 +90,9 @@ const SpotifyAddPlaylist = () => {
                             onChange={handlePlaylistPublicChange}
                         />
                     </div>
-                    <button onClick={handleCreatePlaylist}>Create Playlist</button>
+                    <Link to={`/`} className="button-link">
+                        <button onClick={handleCreatePlaylist}>Create Playlist</button>
+                    </Link>
                 </>
             ) : (
                 <p>No access token available. Make sure you completed the Spotify authorization process.</p>
