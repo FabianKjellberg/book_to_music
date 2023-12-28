@@ -1,25 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./mixbook.css";
 import EpubViewer from "./EpubViewer";
-import SpotifyAddPlaylist from "./SpotifyAddPlaylist.jsx";
+import { Link } from "react-router-dom";
+
 
 function MixBook() {
-
-
-
-    const [accessToken, setAccessToken] = useState('');
-
-    useEffect(() => {
-        const token = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
-
-        if (token) {
-            setAccessToken(token);
-        }
-    });
-
   const handleSubmit = (e) => {
-
-
     e.preventDefault();
   };
   return (
@@ -75,6 +61,14 @@ function MixBook() {
       <h1>File</h1>
       <div>
         <EpubViewer></EpubViewer>
+      </div>
+
+      <div className="flex-container">
+        <Link to="/add-playlist" className="button-link">
+          <button className="start-button row generate_playlist_button">
+            <p>Generate playlist</p>
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ function StartPage() {
       </div>
 
       <div className="flex-container">
-        <Link to="/mixbook" className="button-link">
+        <Link to="/spotify-auth" className="button-link">
         <button
           className="start-button row"
           style={{ background: fixedGradient }}
