@@ -1,6 +1,8 @@
 import React from "react";
 import "./mixbook.css";
 import EpubViewer from "./EpubViewer";
+import { Link } from "react-router-dom";
+
 
 function MixBook() {
   const handleSubmit = (e) => {
@@ -59,6 +61,14 @@ function MixBook() {
       <h1>File</h1>
       <div>
         <EpubViewer></EpubViewer>
+      </div>
+
+      <div className="flex-container">
+        <Link to="/add-playlist" className="button-link">
+          <button className="start-button row generate_playlist_button">
+            <p>Generate playlist</p>
+          </button>
+        </Link>
       </div>
     </div>
   );

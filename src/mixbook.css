@@ -43,3 +43,12 @@ h1 {
   padding: 7px;
   margin: 5px;
 }
+
+.generate_playlist_button{
+  background: linear-gradient(
+    90deg,
+    rgba(66, 109, 170, 1) 10%,
+    rgba(175, 185, 201, 1) 68%
+  );
+  cursor: pointer;
+}
