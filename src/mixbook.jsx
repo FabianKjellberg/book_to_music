@@ -1,15 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./mixbook.css";
 import EpubViewer from "./EpubViewer";
 import { Link } from "react-router-dom";
 
 
 function MixBook() {
+
+
+
+    const [accessToken, setAccessToken] = useState('');
+    const [error] = useState(null);
+
+    useEffect(() => {
+        // Extract token from URL hash
+        const token = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
+
+        // Set the access token in state
+        if (token) {
+            setAccessToken(token);
+        }
+    });
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
     <div>
+        { accessToken ? (
+            <>
       <h1>Type</h1>
       <div className="flex-container">
         <form onSubmit={handleSubmit}>
@@ -64,12 +82,18 @@ function MixBook() {
       </div>
 
       <div className="flex-container">
-        <Link to="/add-playlist" className="button-link">
+        <Link to={`/add-playlist#access_token=${accessToken}`} className="button-link">
           <button className="start-button row generate_playlist_button">
             <p>Generate playlist</p>
           </button>
         </Link>
       </div>
+
+            </>
+        ) : (
+            <p>No access token available. Make sure you completed the Spotify authorization process.</p>
+        )}
+        { error && <p>Error: {error}</p> }
     </div>
   );
 }
