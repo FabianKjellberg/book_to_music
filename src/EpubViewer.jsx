@@ -2,32 +2,81 @@ import React, { useEffect, useState } from "react";
 import UploadBookComponent from "./uploadBookComponent.jsx";
 import BookViewer from "./bookViewer.jsx";
 import { searchTracks } from "./SpotifyAPI.js";
+import axios from 'axios';
 
 const EpubViewer = () => {
-  //en const book behövs för både UploadBookComponent och BookViewer
   const [book, setBook] = useState(null);
+  const [accessToken, setAccessToken] = useState('');
+  const [tracks, setTracks] = useState([]);
+  const createdPlaylistId = localStorage.getItem('createdPlaylistId');
 
-  //denna funktionen kallas på när man blädrar till ett nytt kapitel i bookViewer, använd för att styra spotifyPlayer
-  function sendSearchTermsToSpotifyApi(searchTerms) {
-    //searchTerms är en array av söktermer, den hämtar 4 ord per 3000 ord som finns i kapitlet
-    console.log("Test av callback funktion");
-    console.log(searchTerms);
-
-    //här kan ni skicka in searchTerms till spotifyApi ##########################################################
-      // hämtar Spotify access token från urlen
+  const sendSearchTermsToSpotifyApi = async (searchTerms) => {
     const accessToken = new URLSearchParams(window.location.hash.substring(1)).get('access_token');
 
-      const genres = ["lofi", "classical", "pop"];
+    try {
+      const response = await axios.get(
+        'https://api.spotify.com/v1/search',
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            q: searchTerms.join(' '), // Lägger ihop söktermerna till en sträng
+            type: 'track', // Söker efter pecifikt låtar
+          },
+        }
+      );
 
+      const foundTracks = response.data.tracks.items;
+      console.log(foundTracks);
+      setTracks(foundTracks);
+      addTracks(accessToken, foundTracks);
+    } catch (error) {
+      console.error('Error searching tracks on Spotify:', error.response ? error.response.data : error.message);
+    }
+  };
 
-      try {
-          const tracks = searchTracks(accessToken, genres); // Hämtar låtar med genrer ( kolla SpotifyAPI.js för mer info )
-          console.log(tracks); // You can now use the 'tracks' variable
-      } catch (error) {
-          console.error('Error in the main code: ', error);
-          // Handle the error as needed
-      }
-  }
+  useEffect(() => {
+    if (createdPlaylistId) {
+      console.log('Using playlist ID:', createdPlaylistId);
+    }
+  }, [createdPlaylistId]);
+
+  useEffect(() => {
+     if (tracks.length > 0) {
+          // Denna används när förändringar skett i arrayen och den ska uppdateras igen
+       addTracks(accessToken, tracks);
+     }
+  }, [tracks, accessToken]);
+
+  const addTracks = async (accessToken, tracksToAdd) => {
+    if (!createdPlaylistId) {
+      console.error('No playlist ID found. Create a playlist first.');
+      return;
+    }
+    console.log('Trying to add tracks to:', createdPlaylistId);
+
+    try {
+      const trackUris = tracksToAdd.map(track => track.uri);
+
+      const response = await axios.post(
+        `https://api.spotify.com/v1/playlists/${createdPlaylistId}/tracks`,
+        {
+          uris: trackUris,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Tracks added successfully:', response.data);
+    } catch (error) {
+      console.error('Error adding tracks:', error.response ? error.response.data : error.message);
+    }
+  };
 
   return (
     <>

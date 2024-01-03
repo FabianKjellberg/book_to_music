@@ -53,6 +53,8 @@ const SpotifyAddPlaylist = () => {
             );
 
             console.log(response.data);
+
+            localStorage.setItem('createdPlaylistId', response.data.id); // spara spellistan for future use
         } catch (err) {
             setError(err.message || 'Error creating playlist');
         }
