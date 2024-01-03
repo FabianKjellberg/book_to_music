@@ -19,7 +19,7 @@ export const searchTracks = async (accessToken, genres) => {
 
         return response.data.tracks;
     } catch (error) {
-        console.error('Error seraching tracks on Spotify: ', error);
+        console.error('Error searching tracks on Spotify: ', error);
         throw error;
     }
 };
