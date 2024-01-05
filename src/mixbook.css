@@ -51,4 +51,7 @@ h1 {
     rgba(175, 185, 201, 1) 68%
   );
   cursor: pointer;
+  width: 30em !important;
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
