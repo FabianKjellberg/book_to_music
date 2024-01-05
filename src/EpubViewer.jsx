@@ -21,7 +21,7 @@ const EpubViewer = () => {
             Authorization: `Bearer ${accessToken}`,
           },
           params: {
-            q: searchTerms.join(' '), // Lägger ihop söktermerna till en sträng
+            q: searchTerms.searchTermArray.join(' '), // Lägger ihop söktermerna till en sträng
             type: 'track', // Söker efter pecifikt låtar
           },
         }
