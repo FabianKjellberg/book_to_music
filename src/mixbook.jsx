@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 
 function MixBook() {
-
-
-
     const [accessToken, setAccessToken] = useState('');
     const [error] = useState(null);
+    const [createdPlaylistName, setCreatedPlaylistName] = useState('');
+    const [playlistCreated, setPlaylistCreated] = useState(false);
+    const storedPlaylistName = localStorage.getItem('createdPlaylistName');
 
     useEffect(() => {
         // Extract token from URL hash
@@ -21,6 +21,17 @@ function MixBook() {
         }
     });
 
+    useEffect(() => {
+      const playlistCreatedParam = new URLSearchParams(window.location.hash.substring(1)).get('playlist_created');
+      
+      if (playlistCreatedParam === 'true') {
+        if (storedPlaylistName) {
+            setCreatedPlaylistName(storedPlaylistName);
+            setPlaylistCreated(true);
+          }
+      }
+    }, [storedPlaylistName]);
+
   return (
     <div>
         { accessToken ? (
@@ -31,6 +42,12 @@ function MixBook() {
           <p>Create new playlist</p>
         </button>
       </Link>
+      </div>
+
+      <div className="flex-container">
+          {playlistCreated && (
+              <p>Generating music to {createdPlaylistName}</p>
+          )}
       </div>
 
       <div className="flex-container">

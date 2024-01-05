@@ -1,7 +1,3 @@
-/*
- * Är för tillfället sin egen endpoint /add-playlist
- *
- */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -55,6 +51,9 @@ const SpotifyAddPlaylist = () => {
             console.log(response.data);
 
             localStorage.setItem('createdPlaylistId', response.data.id); // spara spellistan for future use
+            localStorage.setItem('createdPlaylistName', response.data.name);
+    
+            setPlaylistCreated(true);
         } catch (err) {
             setError(err.message || 'Error creating playlist');
         }
@@ -92,7 +91,7 @@ const SpotifyAddPlaylist = () => {
                             onChange={handlePlaylistPublicChange}
                         />
                     </div>
-                    <Link to={`/mixbook#access_token=${accessToken}`} className="button-link">
+                    <Link to={`/mixbook#access_token=${accessToken}&playlist_created=true`} className="button-link">
                         <button onClick={handleCreatePlaylist}>Create Playlist</button>
                     </Link>
                 </>
@@ -103,9 +102,6 @@ const SpotifyAddPlaylist = () => {
             {error && <p>Error: {error}</p>}
         </div>
     );
-
-
-
 };
 
 export default SpotifyAddPlaylist;
