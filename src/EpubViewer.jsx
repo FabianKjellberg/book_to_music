@@ -4,7 +4,7 @@ import BookViewer from "./bookViewer.jsx";
 import { searchTracks } from "./SpotifyAPI.js";
 import axios from 'axios';
 
-const EpubViewer = () => {
+const EpubViewer = ({ setShowPopup }) => {
   const [book, setBook] = useState(null);
   const [accessToken, setAccessToken] = useState('');
   const [tracks, setTracks] = useState([]);
@@ -30,7 +30,7 @@ const EpubViewer = () => {
       const foundTracks = response.data.tracks.items;
       console.log(foundTracks);
       setTracks(foundTracks);
-      addTracks(accessToken, foundTracks);
+      addTracks(accessToken, foundTracks, setShowPopup);
     } catch (error) {
       console.error('Error searching tracks on Spotify:', error.response ? error.response.data : error.message);
     }
@@ -45,11 +45,11 @@ const EpubViewer = () => {
   useEffect(() => {
      if (tracks.length > 0) {
           // Denna används när förändringar skett i arrayen och den ska uppdateras igen
-       addTracks(accessToken, tracks);
+       addTracks(accessToken, tracks, setShowPopup);
      }
   }, [tracks, accessToken]);
 
-  const addTracks = async (accessToken, tracksToAdd) => {
+  const addTracks = async (accessToken, tracksToAdd, setShowPopup) => {
     if (!createdPlaylistId) {
       console.error('No playlist ID found. Create a playlist first.');
       return;
@@ -73,6 +73,7 @@ const EpubViewer = () => {
       );
 
       console.log('Tracks added successfully:', response.data);
+      setShowPopup(true);
     } catch (error) {
       console.error('Error adding tracks:', error.response ? error.response.data : error.message);
     }

@@ -9,7 +9,6 @@ function MixBook() {
     const [error] = useState(null);
     const [createdPlaylistName, setCreatedPlaylistName] = useState('');
     const [playlistCreated, setPlaylistCreated] = useState(false);
-    const storedPlaylistName = localStorage.getItem('createdPlaylistName');
 
     useEffect(() => {
         // Extract token from URL hash
@@ -25,12 +24,23 @@ function MixBook() {
       const playlistCreatedParam = new URLSearchParams(window.location.hash.substring(1)).get('playlist_created');
       
       if (playlistCreatedParam === 'true') {
+        const storedPlaylistName = localStorage.getItem('createdPlaylistName');
+
         if (storedPlaylistName) {
             setCreatedPlaylistName(storedPlaylistName);
             setPlaylistCreated(true);
-          }
+        }
       }
-    }, [storedPlaylistName]);
+    }, []);
+
+    const showPopup = () => {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';
+  
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    };
 
   return (
     <div>
@@ -46,7 +56,7 @@ function MixBook() {
 
       <div className="flex-container">
           {playlistCreated && (
-              <p>Generating music to {createdPlaylistName}</p>
+              <p>Generating music to: {createdPlaylistName}</p>
           )}
       </div>
 
@@ -60,9 +70,14 @@ function MixBook() {
 
       <h1>File</h1>
       <div>
-        <EpubViewer></EpubViewer>
+        <EpubViewer setShowPopup={showPopup} />
       </div>
 
+      <div id="popup" className="popup">
+        <p>Tracks added successfully!</p>
+        <img src="https://cdn.discordapp.com/attachments/1183950307001122866/1193274369133248533/sign-check.png?ex=65ac1e5b&is=6599a95b&hm=db2096d19c767313937b4eb43f7d6c54bfaab278babbd1a47e2d3c8a9f6ca922&" 
+        alt="Check Icon"/>
+      </div>
             </>
         ) : (
             <p>No access token available. Make sure you completed the Spotify authorization process.</p>

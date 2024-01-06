@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "./spotifyAddPlaylist.css";
 import { Link } from "react-router-dom";
 
 const SpotifyAddPlaylist = () => {
@@ -63,37 +64,39 @@ const SpotifyAddPlaylist = () => {
         <div>
             {accessToken ? (
                 <>
+                <div className='flex-container new_playlist_form'>
                     <h2>Create a Spotify Playlist</h2>
                     <div>
-                        <label htmlFor="playlist-name">Name</label>
+                        <label htmlFor="playlist_name">Name: </label>
                         <input
-                            id="playlist-name"
+                            id="playlist_name"
                             type="text"
                             value={playlistName}
                             onChange={handlePlaylistNameChange}
                         />
                     </div>
                     <div>
-                        <label htmlFor="playlist-description">Description</label>
+                        <label htmlFor="playlist_description">Description: </label>
                         <input
-                            id="playlist-description"
+                            id="playlist_description"
                             type="text"
                             value={playlistDescription}
                             onChange={handlePlaylistDescriptionChange}
                         />
                     </div>
                     <div>
-                        <label htmlFor="playlist-public">Public</label>
+                        <label htmlFor="playlist_public">Public: </label>
                         <input
-                            id="playlist-public"
+                            id="playlist_public"
                             type="checkbox"
                             checked={playlistPublic}
                             onChange={handlePlaylistPublicChange}
                         />
                     </div>
-                    <Link to={`/mixbook#access_token=${accessToken}&playlist_created=true`} className="button-link">
-                        <button onClick={handleCreatePlaylist}>Create Playlist</button>
+                    <Link to={`/mixbook#access_token=${accessToken}&playlist_created=true`}>
+                        <button className="create_playlist_button" onClick={handleCreatePlaylist}>Create Playlist</button>
                     </Link>
+                </div>
                 </>
             ) : (
                 <p>No access token available. Make sure you completed the Spotify authorization process.</p>
