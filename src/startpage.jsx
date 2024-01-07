@@ -10,10 +10,8 @@ function StartPage() {
       <div className="information-grid">
         <div className="information-item">
           <p className="about-platform">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Looking to enhance your reading journey? With Book Mixtape you will step into a realm where books and music unite. 
+            Upload your favorite book and get a generated playlist based on it. Experience your personalized playlist, and let it enrich your reading!
           </p>
         </div>
         <div className="information-item">
@@ -60,10 +58,9 @@ function StartPage() {
             src="https://cdn.discordapp.com/attachments/1078963035630223391/1136336743591858196/2702134.png"
             alt="Icon"
           />
-          <h3>Lorem Ipsum</h3>
+          <h3>Melodic</h3>
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Join us in merging words and melodies. Upload a book and get a unique playlist, transforming your reading experience!
           </p>
         </div>
         <div className="flex-container column three-information-boxes">
@@ -71,10 +68,9 @@ function StartPage() {
             src="https://cdn.discordapp.com/attachments/1078963035630223391/1136336743315030016/969639-200.png"
             alt="Icon"
           />
-          <h3>Lorem Ipsum</h3>
+          <h3>Magical</h3>
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Turn each page of your favorite book into a magical experience!
           </p>
         </div>
         <div className="flex-container column three-information-boxes">
@@ -82,10 +78,9 @@ function StartPage() {
             src="https://media.discordapp.net/attachments/1078963035630223391/1136337384959651990/3212567.png"
             alt="Icon"
           />
-          <h3>Lorem Ipsum</h3>
+          <h3>Journey</h3>
           <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Let each playlist reveal a unique story that turns the chapters of your favorite book into an enchanting journey!
           </p>
         </div>
       </div>

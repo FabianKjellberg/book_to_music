@@ -65,15 +65,16 @@ function MixBook() {
                 href={`https://open.spotify.com/playlist/${createdPlaylistId}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="view_playlist"
                 >
-                    <button className="start-button row generate_playlist_button">
+                    <button className="start-button playlist_button">
                         <p>View playlist</p>
                     </button>
                 </a>
           ) : (
                 // Playlist has not been created, show "Create playlist" button
                 <Link to={`/add-playlist#access_token=${accessToken}`} className="button-link">
-                    <button className="start-button row generate_playlist_button">
+                    <button className="start-button playlist_button">
                         <p>Create new playlist</p>
                     </button>
                 </Link>

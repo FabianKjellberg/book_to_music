@@ -43,6 +43,10 @@
   margin-top: 10px;
 }
 
+.start-button {
+  cursor: pointer;
+}
+
 .start-button img {
   margin-top: 1px;
   height: 40px;
