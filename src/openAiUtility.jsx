@@ -7,7 +7,7 @@ class OpenAiUtility {
 
         //!!!!VIKTIGT!!!!
         //Ni kan inte ladda upp API nyckeln i github. om den laddas upp i github tar openAI automatiskt bort nyckeln och då måste jag skapa en nu för att det ska funka.
-        const key = 'something';
+        const key = 'Insert API key here';
 
         const format = '[term, term, term, term]';
 

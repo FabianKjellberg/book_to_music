@@ -9,6 +9,8 @@ function MixBook() {
     const [error] = useState(null);
     const [createdPlaylistName, setCreatedPlaylistName] = useState('');
     const [playlistCreated, setPlaylistCreated] = useState(false);
+    const [createdPlaylistId, setCreatedPlaylistId] = useState('');
+
 
     useEffect(() => {
         // Extract token from URL hash
@@ -18,7 +20,7 @@ function MixBook() {
         if (token) {
             setAccessToken(token);
         }
-    });
+    }, []);
 
     useEffect(() => {
       const playlistCreatedParam = new URLSearchParams(window.location.hash.substring(1)).get('playlist_created');
@@ -32,6 +34,16 @@ function MixBook() {
         }
       }
     }, []);
+
+    useEffect(() => {
+        const storedPlaylistId = localStorage.getItem('createdPlaylistId');
+
+        if (storedPlaylistId) {
+            // Do something with the playlist ID, e.g., set it in state
+            setCreatedPlaylistId(storedPlaylistId);
+        }
+    }, []);
+
 
     const showPopup = () => {
       const popup = document.getElementById('popup');
@@ -47,11 +59,25 @@ function MixBook() {
         { accessToken ? (
             <>
       <div className="flex-container">
-      <Link to={`/add-playlist#access_token=${accessToken}`} className="button-link">
-        <button className="start-button row generate_playlist_button">
-          <p>Create new playlist</p>
-        </button>
-      </Link>
+          { playlistCreated ? (
+              // Playlist has been created, show "View playlist" button
+              <a
+                href={`https://open.spotify.com/playlist/${createdPlaylistId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                    <button className="start-button row generate_playlist_button">
+                        <p>View playlist</p>
+                    </button>
+                </a>
+          ) : (
+                // Playlist has not been created, show "Create playlist" button
+                <Link to={`/add-playlist#access_token=${accessToken}`} className="button-link">
+                    <button className="start-button row generate_playlist_button">
+                        <p>Create new playlist</p>
+                    </button>
+                </Link>
+          )}
       </div>
 
       <div className="flex-container">
