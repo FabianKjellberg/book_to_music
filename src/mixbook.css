@@ -4,35 +4,6 @@ h1 {
   margin-top: 30px;
 }
 
-.button {
-  display: flex;
-}
-
-.button input {
-  display: none;
-}
-
-.button label {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 5px;
-  background: rgb(254, 254, 250);
-  background: linear-gradient(
-    90deg,
-    rgba(66, 109, 170, 1) 10%,
-    rgba(175, 185, 201, 1) 68%
-  );
-  cursor: pointer;
-  border-style: solid;
-  border-radius: 25px;
-  text-align: center;
-  border-color: #fefefa;
-}
-
-.button input:checked + label {
-  border-color: rgb(0, 0, 0);
-}
-
 .book_button {
   align-self: center;
   background-color: #ffffff;
@@ -44,14 +15,14 @@ h1 {
   margin: 5px;
 }
 
-.generate_playlist_button{
+.generate_playlist_button {
   background: linear-gradient(
     90deg,
     rgba(66, 109, 170, 1) 10%,
     rgba(175, 185, 201, 1) 68%
   );
   cursor: pointer;
-  width: 30em !important;
+  width: 25em !important;
   margin-top: 50px;
   margin-bottom: 15px;
 }
@@ -70,7 +41,7 @@ h1 {
   text-align: center;
 }
 
-.popup img{
+.popup img {
   width: 3em;
   margin-top: -10px;
 }

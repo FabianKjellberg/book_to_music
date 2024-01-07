@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./spotifyAddPlaylist.css";
-import { Link } from "react-router-dom";
 
 const SpotifyAddPlaylist = () => {
     const [accessToken, setAccessToken] = useState('');
@@ -53,8 +52,10 @@ const SpotifyAddPlaylist = () => {
 
             localStorage.setItem('createdPlaylistId', response.data.id); // spara spellistan for future use
             localStorage.setItem('createdPlaylistName', response.data.name);
-    
-            // setPlaylistCreated(true);            /// finns inte?
+
+            const redirectUrl = `/mixbook#access_token=${accessToken}&playlist_created=true`;
+            window.location.href = redirectUrl;
+
         } catch (err) {
             setError(err.message || 'Error creating playlist');
         }
@@ -93,9 +94,7 @@ const SpotifyAddPlaylist = () => {
                             onChange={handlePlaylistPublicChange}
                         />
                     </div>
-                    <Link to={`/mixbook#access_token=${accessToken}&playlist_created=true`}>
-                        <button className="create_playlist_button" onClick={handleCreatePlaylist}>Create Playlist</button>
-                    </Link>
+                    <button className="create_playlist_button" onClick={handleCreatePlaylist}>Create Playlist</button>
                 </div>
                 </>
             ) : (
