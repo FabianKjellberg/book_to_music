@@ -1,26 +1,26 @@
-.new_playlist_form{
+.new_playlist_form {
     display: flex;
     flex-direction: column;
     margin: auto;
 }
 
-.new_playlist_form input{
+.new_playlist_form input {
     padding: 8px;
     margin-top: 5px;
     border-radius: 20px;
     border: 2px solid #333;
 }
 
-#playlist_name{
+#playlist_name {
     margin-left: 45px;
 }
 
-#playlist_public{
+#playlist_public {
     margin: 15px;
     transform: scale(1.5);
 }
 
-.create_playlist_button{
+.create_playlist_button {
     padding: 10px;
     border-radius: 20px;
     background: linear-gradient(90deg, #426daa 10%, #afb9c9 68%);

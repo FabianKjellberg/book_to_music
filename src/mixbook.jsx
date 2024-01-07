@@ -18,20 +18,15 @@ function MixBook() {
         if (token) {
             setAccessToken(token);
         }
-    });
 
-    useEffect(() => {
-      const playlistCreatedParam = new URLSearchParams(window.location.hash.substring(1)).get('playlist_created');
+        const playlistCreatedParam = new URLSearchParams(window.location.hash.substring(1)).get('playlist_created');
       
-      if (playlistCreatedParam === 'true') {
-        const storedPlaylistName = localStorage.getItem('createdPlaylistName');
-
-        if (storedPlaylistName) {
-            setCreatedPlaylistName(storedPlaylistName);
-            setPlaylistCreated(true);
+        if (playlistCreatedParam === 'true') {
+          const storedPlaylistName = localStorage.getItem('createdPlaylistName');
+          setCreatedPlaylistName(storedPlaylistName);
+          setPlaylistCreated(true);
         }
-      }
-    }, []);
+      });
 
     const showPopup = () => {
       const popup = document.getElementById('popup');
