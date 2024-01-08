@@ -4,7 +4,6 @@ const SpotifyAuthorization = () => {
     useEffect(() => {
     const handleAuthorization = () => {
         const clientId = '6051b71871fd4966b5913a298f52c028';
-        //const redirectUri = 'http://localhost:5173/spotify-playlists';
         const redirectUri = 'http://localhost:5173/mixbook';
         const scope =
             'user-read-private user-read-email ' +
