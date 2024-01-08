@@ -103,12 +103,6 @@ export default function BookViewer(props) {
             <button onClick={() => goToNextPage()} className="book_button">
               Go to next page
             </button>
-            <button
-              onClick={() => getTextForCurrentPage()}
-              className="book_button"
-            >
-              Get text from this page
-            </button>
           </div>
           <div ref={viewerRef}></div>
         </div>

@@ -12,18 +12,6 @@ export default function UploadBookComponent(props) {
       props.book.loaded.metadata.then((metadata) => {
         setBookString(metadata.title + ", " + metadata.creator);
       });
-
-      const rendition = props.book.renderTo(viewerRef.current, {
-        //ändra om ni vill ändra på storleken på cover preview
-        width: 200,
-        height: 400,
-      });
-      rendition.display();
-      return () => {
-        if (props.book) {
-          rendition.destroy();
-        }
-      };
     }
   }, [props.book]);
 
