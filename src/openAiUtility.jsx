@@ -42,17 +42,6 @@ class OpenAiUtility {
                                 '3. Follow this format for the response ' +
                                 format +
                                 ' . 4. When replacing the term from the format, only use words',
-
-                            // fabians OG meddelande
-                            /*
-                            content:
-                                'follow these 4 steps 1. use the text between these tags &€%& ' +
-                                text +
-                                ' &€%&' +
-                                '2. find 4 single words from said text that would be good search terms to find a song. 3. follow this format for the response ' +
-                                format +
-                                '. 4. when replacing the term from the format, only use words',
-                                    */
                         },
                     ],
                     //ändra inte till gpt-4, den kostar aldeles för mycket!!!
