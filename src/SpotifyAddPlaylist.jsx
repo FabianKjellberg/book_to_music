@@ -7,6 +7,7 @@ const SpotifyAddPlaylist = () => {
     // state för att skapa en playlist
     const [playlistName, setPlaylistName] = useState('');
     const [playlistDescription, setPlaylistDescription] = useState('');
+    const [playlistPublic, setPlaylistPublic] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -27,6 +28,10 @@ const SpotifyAddPlaylist = () => {
         setPlaylistDescription(event.target.value);
     };
 
+    const handlePlaylistPublicChange = (event) => {
+        setPlaylistPublic(event.target.checked);
+    };
+
     const handleCreatePlaylist = async () => {
         try {
             const response = await axios.post(
@@ -34,7 +39,7 @@ const SpotifyAddPlaylist = () => {
                 {
                     name: playlistName,
                     description: playlistDescription,
-                    public: true,
+                    public: playlistPublic,
                 },
                 {
                     headers: {
@@ -55,6 +60,7 @@ const SpotifyAddPlaylist = () => {
             setError(err.message || 'Error creating playlist');
         }
     };
+
     return (
         <div>
             {accessToken ? (
@@ -79,6 +85,15 @@ const SpotifyAddPlaylist = () => {
                             onChange={handlePlaylistDescriptionChange}
                         />
                     </div>
+                    <div>
+                        <label htmlFor="playlist_public">Public: </label>
+                        <input
+                            id="playlist_public"
+                            type="checkbox"
+                            checked={playlistPublic}
+                            onChange={handlePlaylistPublicChange}
+                        />
+                    </div>
                     <button className="create_playlist_button" onClick={handleCreatePlaylist}>Create Playlist</button>
                 </div>
                 </>
@@ -89,9 +104,6 @@ const SpotifyAddPlaylist = () => {
             {error && <p>Error: {error}</p>}
         </div>
     );
-
-
 };
-
 
 export default SpotifyAddPlaylist;
