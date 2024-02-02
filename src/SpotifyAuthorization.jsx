@@ -7,14 +7,7 @@ const SpotifyAuthorization = () => {
         const clientId = '6051b71871fd4966b5913a298f52c028';
         //const redirectUri = 'http://localhost:5173/spotify-playlists';
 
-        const [redirectUri, setRedirectUri] = useState(() => {
-            const currentPath = window.location.pathname;
-             const newUri = currentPath.replace(/\/spotifyAuth/, '/mixbook');
-             setRedirectUri(newUri);
-
-        });
-
-        window.location.pathname
+        const [redirectUri] = useState(window.location.pathname);
         //const redirectUri = 'http://localhost:5173/mixbook';
         const scope =
             'user-read-private user-read-email ' +
