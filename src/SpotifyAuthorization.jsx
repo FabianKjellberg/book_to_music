@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 
 const SpotifyAuthorization = () => {
     useEffect(() => {
     const handleAuthorization = () => {
         const clientId = '6051b71871fd4966b5913a298f52c028';
         //const redirectUri = 'http://localhost:5173/spotify-playlists';
-        const redirectUri = 'http://localhost:5173/mixbook';
+
+        const [redirectUri] = useState(window.location.pathname);
+        //const redirectUri = 'http://localhost:5173/mixbook';
         const scope =
             'user-read-private user-read-email ' +
             'playlist-modify-public ' +
